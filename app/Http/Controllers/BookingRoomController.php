@@ -19,8 +19,8 @@ class BookingRoomController extends Controller
     {
         $admin = BookingRoom::all();
         $id = Auth::id();
-        $bookings = BookingRoom::where('user_id', $id);
-        return view('bookingroom.index', compact('bookings', 'admin'));
+        $booking = BookingRoom::where('user_id', $id)->get();
+        return view('bookingroom.index', compact('booking', 'admin'));
     }
 
     /**

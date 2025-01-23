@@ -43,13 +43,13 @@
                 @php
                     $index = 1;
                 @endphp
-                @foreach ($bookings as $booking)
+                @foreach ($booking as $b)
                 <tr>
                     <td>{{ $index++ }}</td>
-                    <td>{{ $booking->user->name }}</td>
-                    <td>{{ $booking->room->roomname }}</td>
-                    <td>{{ $booking->date_start }}</td>
-                    <td>{{ $booking->date_end }}</td>
+                    <td>{{ $b->user->name }}</td>
+                    <td>{{ $b->room->roomname }}</td>
+                    <td>{{ $b->date_start }}</td>
+                    <td>{{ $b->date_end }}</td>
                 </tr>
                 @endforeach
             </tbody>
