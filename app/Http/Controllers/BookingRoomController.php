@@ -46,10 +46,8 @@ class BookingRoomController extends Controller
             'date_end' => 'required|date|after_or_equal:date_start',
         ]);
 
-        // Create booking
         $booking = BookingRoom::create($request->all());
 
-        // Update room status to true (booked)
         $room = Room::findOrFail($request->room_id);
         $room->update(['status' => true]);
 
@@ -63,15 +61,16 @@ class BookingRoomController extends Controller
     {
         $booking = BookingRoom::findOrFail($id);
         $users = User::all();
-        $room = Room::all();
+        $room = Room::where('status',0)->get();
         return view('bookingroom.edit', compact('booking', 'users', 'room'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BookingRoom $booking)
+    public function update(Request $request, string $id)
     {
+        $booking = BookingRoom::find($id);
         $request->validate([
             'user_id' => 'required|exists:users,id',
             'room_id' => 'required|exists:room,id',

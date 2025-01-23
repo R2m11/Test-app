@@ -161,19 +161,26 @@
         <table id="dataTable" class="table table-flush table-hover">
                 <thead>
                     <tr>
+                        <th>No</th>
                         <th>Tanggal Pinjam</th>
                         <th>Tanggal Selesai Pinjam</th>
                         <th>Nama Ruangan</th>
+                        <th>User Peminjam</th>
                         <th>Deskripsi Ruangan</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $index = 1;
+                    @endphp
                 @foreach ($bookingroom as $b)
                     <tr>
+                        <td>{{ $index++ }}</td>
                         <td>{{ $b->date_start }}</td>
                         <td>{{ $b->date_end }}</td>
+                        <td>{{ $b->user->name }}</td>
                         <td>{{ $b->room->roomname }}</td>
                         <td>{{ $b->room->roomdesc }}</td>
                         <td>
